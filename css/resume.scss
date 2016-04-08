@@ -1,0 +1,316 @@
+---
+---
+
+/* Import Sass components. */
+
+@import "base", "grid";
+
+/* Timeline. */
+
+$timeline-label-size: 6rem;
+$timeline-circle-size: 2.5rem;
+$timeline-gutter: 1.8rem;
+$timeline-line-width: 0.7rem;
+$timeline-width: $timeline-label-size + $timeline-gutter + $timeline-circle-size + $timeline-gutter;
+
+ul.timeline {
+
+    margin-top: 1.5em !important;
+    list-style-type: none;
+
+    li[data-year] {
+
+        position: relative;
+        padding-left: $timeline-width;
+        padding-bottom: 2em;
+
+        h1, h2, p {
+            font-size: 1em;
+            font-weight: $font-weight-normal;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-weight: $font-weight-bold;
+        }
+
+        p {
+            font-style: italic;
+            opacity: 0.6;
+        }
+
+        &::before, &::after {
+            display: block;
+            position: absolute;
+            top: 0;
+        }
+
+        &::before {
+            @extend .shadow-1;
+            content: '';
+            background: #20B6B6;
+            height: $timeline-circle-size;
+            width: $timeline-circle-size;
+            border-radius: 50%;
+            left: $timeline-label-size + $timeline-gutter;
+            transition: all 200ms ease;
+            z-index: 2;
+        }
+
+        &:hover::before {
+            transform: scale(1.18);
+        }
+
+        &::after {
+            content: attr(data-year);
+            overflow: visible;
+            width: 0;
+            text-align: right;
+            direction: rtl;
+            text-indent: $timeline-gutter;
+            line-height: $timeline-circle-size;
+            font-size: 1em;
+            height: 100%;
+            border: 0px solid rgba(0, 0, 0, 0.1);
+            border-right-width: $timeline-line-width;
+            left: $timeline-label-size + $timeline-gutter + ($timeline-circle-size / 2) - ($timeline-line-width / 2);
+            z-index: 1;
+        }
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+
+        &:last-child::after {
+            height: 0;
+        }
+
+    }
+
+}
+
+/* Project list. */
+
+ul.project-list {
+
+    list-style-type: none;
+
+    li {
+
+        @extend .shadow-1;
+        display: block;
+        box-sizing: border-box;
+        border-radius: 2px;
+        padding: 1em;
+        background-color: #fdfdfd;
+        margin-top: 1em;
+
+        h1, h2 {
+            font-size: 1em;
+        }
+
+        h1 span {
+            font-weight: $font-weight-normal;
+        }
+
+        h1 i {
+            opacity: 0.35;
+        }
+
+        h2 {
+            font-weight: $font-weight-normal;
+            font-style: italic;
+        }
+
+    }
+
+}
+
+/* Skill list. */
+
+ul.skill-list {
+
+    list-style-type: none;
+
+    li {
+
+        margin: 0.75em 0;
+
+        span {
+            font-weight: $font-weight-bold;
+            display: block;
+        }
+
+        i {
+            font-size: 0.8em;
+            font-style: normal;
+            opacity: 0.7;
+        }
+
+    }
+
+}
+
+/* General structure of the resume. */
+
+.cv {
+
+    @extend .shadow-1;
+    background: white;
+    margin: 4% auto;
+    width: 92%;
+    box-sizing: border-box;
+    max-width: 1080px;
+    border-radius: 2px;
+    overflow: hidden;
+
+    h1, h2, ul, li, p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .contact, .history {
+        box-sizing: border-box;
+        padding: 3.3rem;
+    }
+
+    .history {
+
+        vertical-align: top;
+
+        & > h1 {
+            opacity: 0.35;
+            text-align: right;
+        }
+
+        & > h1:not(:first-child) {
+            margin-top: 1em;
+        }
+
+    }
+
+    .contact {
+
+        @extend .shadow-1;
+        color: white;
+        width: 40%;
+        background-color: #20B6B6; // https://color.hailpixel.com/#1CD478,20B6B6
+        background: linear-gradient(110deg, #1CD478 0%, #20B6B6 100%);
+
+        .photo {
+
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 0;
+            padding-bottom: 80%;
+            position: relative;
+
+            &::after {
+
+                @extend .shadow-1;
+                content: '';
+                display: block;
+                width: 67%;
+                height: 1 / 0.80 * 67%;
+                max-width: 300px;
+                max-height: 300px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                border-radius: 50%;
+                background-size: cover;
+
+            }
+
+        }
+
+        .titles {
+            display: none;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        h1 {
+            @extend .scale-2;
+            line-height: 1.3;
+            font-weight: $font-weight-bold;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            @extend .scale-1;
+            line-height: 1.3;
+            font-weight: $font-weight-normal;
+            margin-bottom: 3rem;
+        }
+
+        p {
+            margin-bottom: 3rem;
+            line-height: 1.4;
+        }
+
+        p::before {
+            content: 'Self-summary: ';
+            font-style: italic;
+        }
+
+        /* Font-awesome bug fixes. */
+
+        .fa-linkedin,  {
+            vertical-align: 1px;
+        }
+
+        .fa-envelope, .fa-envelope-o {
+            font-size: 13px !important;
+            vertical-align: 1px;
+        }
+
+        .fa-fw {
+            width: 24px !important;
+        }
+
+    }
+
+    /* Customize individual resumes. */
+
+    &.kasper  .contact .photo::after { background-image: url('../images/kasper.png'); }
+    &.laurent .contact .photo::after { background-image: url('../images/laurent.png'); }
+    &.mathieu .contact .photo::after { background-image: url('../images/mathieu.jpg'); }
+
+}
+
+/* Printer version. */
+
+@media print and (color) {
+
+   *, *::after, *::before {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        box-shadow: none !important;
+   }
+
+}
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    html {
+        font-size: 0.7 * 62.5%;
+        line-height: round(0.949 * $line-height * 100) / 100;
+    }
+
+    .cv {
+        page-break-after: always;
+    }
+
+}

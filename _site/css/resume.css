@@ -1,0 +1,275 @@
+/* Import Sass components. */
+/* Remove 300ms click delay on Chrome, Firefox and IE [1]. Add the below to your
+   <head> to disable the click delay for iOS 9.3+ and other modern browsers
+   [1,2,3] as well as enable GPU rasterization in Chrome [4].
+
+       <meta name="viewport"
+           content="width=device-width,minimum-scale=1,initial-scale=1">
+
+   [1] http://developer.telerik.com/featured/300-ms-click-delay-ios-8/
+   [2] https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away
+   [3] http://patrickhlauke.github.io/touch/tests/results/
+   [4] https://www.chromium.org/developers/design-documents/chromium-graphics/how-to-get-gpu-rasterization
+*/
+a, button, label {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation; }
+
+/* Device widths as defined by the Chrome Developer Tools. */
+/* Base typography. */
+html {
+  font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  line-height: 1.58;
+  color: #212121;
+  background-color: #f2f2f2;
+  /* Downsize the root font-size on devices that you hold closer to your eyes.
+     Apply the same scaling that medium.com does for mobile. By scaling the
+     root font-size (instead of e.g., the body size), we can use `rem`s to
+     define the dimensions of the page and everything will scale accordingly.
+     Also, using a font-size of 62.5% means that one rem corresponds to 10px,
+     unless the user has changed his browser's font size.
+  */ }
+  @media screen and (max-width: 768px), print {
+    html {
+      font-size: 53.57144%;
+      line-height: 1.5; } }
+
+body {
+  font-size: 2.1rem; }
+
+h1, h2, h3 {
+  font-weight: 500; }
+
+h4, h5, h6 {
+  font-weight: 300; }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+
+.scale-0 {
+  font-size: 1em; }
+
+.scale-1, .cv .contact h2 {
+  font-size: 1.25em; }
+
+.scale-2, .cv .contact h1 {
+  font-size: 1.5625em; }
+
+/* Material design box shadows [1].
+   [1] http://codepen.io/sdthornton/pen/wBZdXq
+*/
+.shadow-1, ul.timeline li[data-year]::before, ul.project-list li, .cv, .cv .contact, .cv .contact .photo::after {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+
+.shadow-2 {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+
+.shadow-3 {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+
+.shadow-4 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+
+.shadow-5 {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }
+
+/* Grid based on ungrid.css [1].
+   [1] http://chrisnager.github.io/ungrid/
+*/
+@media screen and (min-width: 768px), print {
+  .row {
+    width: 100%;
+    display: table;
+    table-layout: fixed; }
+
+  .col {
+    display: table-cell; } }
+@media screen and (max-width: 767px) {
+  .col {
+    width: 100% !important; } }
+/* Timeline. */
+ul.timeline {
+  margin-top: 1.5em !important;
+  list-style-type: none; }
+  ul.timeline li[data-year] {
+    position: relative;
+    padding-left: 12.1rem;
+    padding-bottom: 2em; }
+    ul.timeline li[data-year] h1, ul.timeline li[data-year] h2, ul.timeline li[data-year] p {
+      font-size: 1em;
+      font-weight: 300;
+      line-height: 1.3; }
+    ul.timeline li[data-year] h1 {
+      font-weight: 500; }
+    ul.timeline li[data-year] p {
+      font-style: italic;
+      opacity: 0.6; }
+    ul.timeline li[data-year]::before, ul.timeline li[data-year]::after {
+      display: block;
+      position: absolute;
+      top: 0; }
+    ul.timeline li[data-year]::before {
+      content: '';
+      background: #20B6B6;
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: 50%;
+      left: 7.8rem;
+      transition: all 200ms ease;
+      z-index: 2; }
+    ul.timeline li[data-year]:hover::before {
+      transform: scale(1.18); }
+    ul.timeline li[data-year]::after {
+      content: attr(data-year);
+      overflow: visible;
+      width: 0;
+      text-align: right;
+      direction: rtl;
+      text-indent: 1.8rem;
+      line-height: 2.5rem;
+      font-size: 1em;
+      height: 100%;
+      border: 0px solid rgba(0, 0, 0, 0.1);
+      border-right-width: 0.7rem;
+      left: 8.7rem;
+      z-index: 1; }
+    ul.timeline li[data-year]:last-child {
+      padding-bottom: 0; }
+    ul.timeline li[data-year]:last-child::after {
+      height: 0; }
+
+/* Project list. */
+ul.project-list {
+  list-style-type: none; }
+  ul.project-list li {
+    display: block;
+    box-sizing: border-box;
+    border-radius: 2px;
+    padding: 1em;
+    background-color: #fdfdfd;
+    margin-top: 1em; }
+    ul.project-list li h1, ul.project-list li h2 {
+      font-size: 1em; }
+    ul.project-list li h1 span {
+      font-weight: 300; }
+    ul.project-list li h1 i {
+      opacity: 0.35; }
+    ul.project-list li h2 {
+      font-weight: 300;
+      font-style: italic; }
+
+/* Skill list. */
+ul.skill-list {
+  list-style-type: none; }
+  ul.skill-list li {
+    margin: 0.75em 0; }
+    ul.skill-list li span {
+      font-weight: 500;
+      display: block; }
+    ul.skill-list li i {
+      font-size: 0.8em;
+      font-style: normal;
+      opacity: 0.7; }
+
+/* General structure of the resume. */
+.cv {
+  background: white;
+  margin: 4% auto;
+  width: 92%;
+  box-sizing: border-box;
+  max-width: 1080px;
+  border-radius: 2px;
+  overflow: hidden;
+  /* Customize individual resumes. */ }
+  .cv h1, .cv h2, .cv ul, .cv li, .cv p {
+    margin: 0;
+    padding: 0; }
+  .cv .contact, .cv .history {
+    box-sizing: border-box;
+    padding: 3.3rem; }
+  .cv .history {
+    vertical-align: top; }
+    .cv .history > h1 {
+      opacity: 0.35;
+      text-align: right; }
+    .cv .history > h1:not(:first-child) {
+      margin-top: 1em; }
+  .cv .contact {
+    color: white;
+    width: 40%;
+    background-color: #20B6B6;
+    background: linear-gradient(110deg, #1CD478 0%, #20B6B6 100%);
+    /* Font-awesome bug fixes. */ }
+    .cv .contact .photo {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      width: 100%;
+      height: 0;
+      padding-bottom: 80%;
+      position: relative; }
+      .cv .contact .photo::after {
+        content: '';
+        display: block;
+        width: 67%;
+        height: 83.75%;
+        max-width: 300px;
+        max-height: 300px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        border-radius: 50%;
+        background-size: cover; }
+    .cv .contact .titles {
+      display: none; }
+    .cv .contact ul {
+      list-style-type: none; }
+    .cv .contact h1 {
+      line-height: 1.3;
+      font-weight: 500;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem; }
+    .cv .contact h2 {
+      line-height: 1.3;
+      font-weight: 300;
+      margin-bottom: 3rem; }
+    .cv .contact p {
+      margin-bottom: 3rem;
+      line-height: 1.4; }
+    .cv .contact p::before {
+      content: 'Self-summary: ';
+      font-style: italic; }
+    .cv .contact .fa-linkedin {
+      vertical-align: 1px; }
+    .cv .contact .fa-envelope, .cv .contact .fa-envelope-o {
+      font-size: 13px !important;
+      vertical-align: 1px; }
+    .cv .contact .fa-fw {
+      width: 24px !important; }
+  .cv.kasper .contact .photo::after {
+    background-image: url("../images/kasper.png"); }
+  .cv.laurent .contact .photo::after {
+    background-image: url("../images/laurent.png"); }
+  .cv.mathieu .contact .photo::after {
+    background-image: url("../images/mathieu.jpg"); }
+
+/* Printer version. */
+@media print and (color) {
+  *, *::after, *::before {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    box-shadow: none !important; } }
+@media print {
+  @page {
+    size: A4;
+    margin: 0; }
+  html {
+    font-size: 43.75%;
+    line-height: 1.5; }
+
+  .cv {
+    page-break-after: always; } }

@@ -1,0 +1,116 @@
+/* Remove 300ms click delay on Chrome, Firefox and IE [1]. Add the below to your
+   <head> to disable the click delay for iOS 9.3+ and other modern browsers
+   [1,2,3] as well as enable GPU rasterization in Chrome [4].
+
+       <meta name="viewport"
+           content="width=device-width,minimum-scale=1,initial-scale=1">
+
+   [1] http://developer.telerik.com/featured/300-ms-click-delay-ios-8/
+   [2] https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away
+   [3] http://patrickhlauke.github.io/touch/tests/results/
+   [4] https://www.chromium.org/developers/design-documents/chromium-graphics/how-to-get-gpu-rasterization
+*/
+
+a, button, label {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+/* Device widths as defined by the Chrome Developer Tools. */
+
+$mobile-s: 320px; // E.g., iPhone 4, iPhone 5.
+$mobile-m: 375px; // E.g., iPhone 6.
+$mobile-l: 425px; // E.g., iPhone 6+.
+$tablet: 768px; // E.g., iPad.
+$laptop-s: 1024px;
+$laptop-m: 1440px;
+$laptop-l: 1920px;
+$desktop: 1920px;
+$fourk: 2560px;
+
+/* Base typography. */
+
+$font-family: 'Roboto', sans-serif;
+$font-size: 2.1rem; // From medium.com, corresponds to 21px.
+$line-height: 1.58;
+$font-color: #212121; // From inbox.google.com.
+$html-background-color: #f2f2f2;
+$font-weight-normal: 300;
+$font-weight-bold: 500;
+$font-scale-step: 1.25;
+
+html {
+
+    font-size: 62.5%;
+    font-family: $font-family;
+    font-weight: $font-weight-normal;
+    line-height: $line-height;
+    color: $font-color;
+    background-color: $html-background-color;
+    
+    /* Downsize the root font-size on devices that you hold closer to your eyes.
+       Apply the same scaling that medium.com does for mobile. By scaling the
+       root font-size (instead of e.g., the body size), we can use `rem`s to
+       define the dimensions of the page and everything will scale accordingly.
+       Also, using a font-size of 62.5% means that one rem corresponds to 10px,
+       unless the user has changed his browser's font size.
+    */
+    @media screen and (max-width: $tablet), print {
+        font-size: 0.857143 * 62.5%;
+        line-height: round(0.949 * $line-height * 100) / 100;
+    }
+
+}
+
+body {
+    font-size: $font-size;
+}
+
+h1, h2, h3 {
+    font-weight: $font-weight-bold;
+}
+
+h4, h5, h6 {
+    font-weight: $font-weight-normal;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.scale-0 {
+    font-size: 1em;
+}
+
+.scale-1 {
+    font-size: $font-scale-step * 1em;
+}
+
+.scale-2 {
+    font-size: $font-scale-step * $font-scale-step * 1em;
+}
+
+/* Material design box shadows [1].
+   [1] http://codepen.io/sdthornton/pen/wBZdXq
+*/
+
+.shadow-1 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.shadow-2 {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.shadow-3 {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.shadow-4 {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.shadow-5 {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}

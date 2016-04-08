@@ -1,0 +1,20 @@
+/* Grid based on ungrid.css [1].
+   [1] http://chrisnager.github.io/ungrid/
+*/
+
+@media screen and (min-width: $tablet), print {
+    .row {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+    .col {
+        display: table-cell;
+    }
+}
+
+@media screen and (max-width: $tablet - 1px) {
+    .col {
+        width: 100% !important;
+    }
+}
