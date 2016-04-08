@@ -279,9 +279,7 @@ ul.skill-list {
 
     /* Customize individual resumes. */
 
-    &.kasper  .contact .photo::after { background-image: url('../images/kasper.png'); }
-    &.laurent .contact .photo::after { background-image: url('../images/laurent.png'); }
-    &.mathieu .contact .photo::after { background-image: url('../images/mathieu.jpg'); }
+    &.kasper  .contact .photo::after { background-image: url('images/kasper.png'); }
 
 }
 
